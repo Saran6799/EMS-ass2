@@ -1,0 +1,70 @@
+
+//task1 
+int led1 = 4; // set '4' as signal A 
+#define INPUT_PIN 1 // frequency 1 is connected to pin 1
+#define INPUT_PIN 5 // frequency 2 is connected to pin 1
+
+void setup() 
+{
+  Serial.begin(9600);
+  pinMode(led1, OUTPUT);  //  led2 pin(sigA) = OUTPUT
+  
+}
+void task1()
+{
+      digitalWrite(led1,HIGH);
+      delayMicroseconds(200);
+      digitalWrite(led1,LOW);
+      delayMicroseconds(50);
+      digitalWrite(led1,HIGH);
+      delayMicroseconds(30);
+      digitalWrite(led1,LOW);
+}
+
+
+
+//task 2
+void task2()
+
+{
+  
+  uint32_t pulse_width = pulseIn(INPUT_PIN, HIGH);// Measure the pulse width
+
+  
+  float period = 2 * pulse_width / 1000.0;// Compute the frequency of the pulse
+  float frequency = 1000.0 / period;
+
+  
+  if (frequency < 333)// Scale the frequency
+   {
+    frequency = 0;
+  }
+
+  
+  Serial.print("FREQUENCY: ");// Print the frequency
+  Serial.println(frequency);
+  
+}
+
+//task 3
+void task3()
+
+{
+ 
+  uint32_t pulse_width = pulseIn(INPUT_PIN, HIGH); // Measure the pulse width
+  float period = 2 * pulse_width / 1000.0;// Compute the frequency of the pulse
+  float frequency = 1000.0 / period;
+
+  
+  if (frequency < 500) // Scale the frequency
+  {
+    frequency = 0;
+  }
+
+  Serial.print("FREQUENCY: "); // Print the frequency
+  Serial.println(frequency);
+  delay(8);// delay for 8ms for next reading
+}
+
+void loop()
+{}
